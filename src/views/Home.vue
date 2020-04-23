@@ -15,7 +15,9 @@ export default {
   components: {},
   data() {
     return {
-      options: {},
+      options: {
+        licenseKey: 'Mykey',
+      },
     };
   },
 };
