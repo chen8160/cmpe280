@@ -19,7 +19,7 @@ export default {
 </script>
 <style scoped>
 .container {
-  background-color: hotpink;
+  /* background-color: hotpink; */
   width: 100%;
   height: 100%;
   display: flex;
@@ -27,6 +27,9 @@ export default {
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  background: url('../assets/bg.jpg');
+  background-size: cover;
+  background-position: center;
 }
 .chart {
   width: 50%;
@@ -37,10 +40,13 @@ export default {
 .content {
   width: 30%;
   height: 50%;
-  background-color: lightseagreen;
+  /* background-color: lightseagreen; */
 }
 .content > * {
   width: 100%;
+}
+.content > img {
+  transform: translate(-10%, -30%);
 }
 
 .fade-in {
@@ -54,11 +60,11 @@ export default {
 @keyframes fadeInOpacity {
   0% {
     opacity: 0;
-    transform: translateX(30%);
+    transform: translate(30%, 0);
   }
   100% {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateX(-10%, -30%);
   }
 }
 
