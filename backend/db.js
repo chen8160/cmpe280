@@ -20,7 +20,8 @@ function dbQuery(sql) {
   });
 }
 
-module.exports.getData = () => {
-  const sql = 'SELECT * FROM project_280_game.games;';
+module.exports.getData = (id) => {
+  // const sql = 'SELECT * FROM project_280_game.games;';
+  const sql = `SELECT * FROM project_280_game.${id};`;
   return dbQuery(sql);
 };

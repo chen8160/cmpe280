@@ -13,7 +13,7 @@
     <div class="container container-table">
         <div class="row vertical-center-row">
             <div class="text-center col-md-4 col-md-offset-4">
-                <h2>Get Earthquake Data for a Time Range</h2>
+                <h2>Getting Data...</h2>
                 <div id="errorMsg"></div>
             </div>
         </div>
@@ -29,7 +29,8 @@
         myConnector.getSchema = function (schemaCallback) {
             // Schema for magnitude and place data
             var games_cols = [{
-                id: "id",
+                id: "game_id",
+                alias: "id",
                 dataType: tableau.dataTypeEnum.int
             }, {
                 id: "franchise",
@@ -59,32 +60,161 @@
                 columns: games_cols
             };
 
-            // Schema for time and URL data
-            // var time_url_cols = [{
-            //     id: "id",
-            //     dataType: tableau.dataTypeEnum.string
-            // }, {
-            //     id: "time",
-            //     alias: "time",
-            //     dataType: tableau.dataTypeEnum.date
-            // }, {
-            //     id: "url",
-            //     alias: "url",
-            //     dataType: tableau.dataTypeEnum.string
-            // }];
+            var pokemon_game_rev_cols = [
+                {
+                    id: "game",
+                    alias: "game",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "console",
+                    alias: "console",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "revenue",
+                    alias: "revenue",
+                    dataType: tableau.dataTypeEnum.float
+                },
+            ]
 
-            // var timeUrlTable = {
-            //     id: "timeUrl",
-            //     alias: "Time and URL Data",
-            //     columns: time_url_cols
-            // };
-            // schemaCallback([magPlaceTable, timeUrlTable]);
-            schemaCallback([gamesTable]);
+            var pokemonGameRevTable = {
+                id: "pokemon_game_rev",
+                alias: "Pokemon Game Revenue",
+                columns: pokemon_game_rev_cols
+            }
+
+            var pokemon_game_sale_unit_cols = [
+                {
+                    id: "game",
+                    alias: "game",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "year",
+                    alias: "year",
+                    dataType: tableau.dataTypeEnum.int
+                },
+                {
+                    id: "unit_sold_in_millions",
+                    alias: "unit_sold_in_millions",
+                    dataType: tableau.dataTypeEnum.float
+                },
+                {
+                    id: "game_rankings",
+                    alias: "game_rankings",
+                    dataType: tableau.dataTypeEnum.float
+                },
+            ]
+
+            var pokemonGameSaleUnitTable = {
+                id: "pokemon_game_sale_unit",
+                alias: "Pokemon Game Sale Unit",
+                columns: pokemon_game_sale_unit_cols
+            }
+
+            var pokemon_game_rev_type_cols = [
+                {
+                    id: "revenue_type",
+                    alias: "revenue_type",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "sub_type",
+                    alias: "sub_type",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "revenue",
+                    alias: "revenue",
+                    dataType: tableau.dataTypeEnum.float
+                },
+            ]
+
+            var pokemonGameRevTypeTable = {
+                id: "pokemon_revenue_type",
+                alias: "Pokemon Game Revenue Type",
+                columns: pokemon_game_rev_type_cols
+            }
+
+            var pokemon_spend_per_player_cols = [
+                {
+                    id: "region",
+                    alias: "region",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "spend",
+                    alias: "spend",
+                    dataType: tableau.dataTypeEnum.float
+                },
+            ]
+
+            var pokemonSpendPerPlayerTable = {
+                id: "pokemon_spend_per_player",
+                alias: "Pokemon Spend Per Player",
+                columns: pokemon_spend_per_player_cols
+            }
+
+            var pokemon_us_reg_cols = [
+                {
+                    id: "state",
+                    alias: "state",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "registrations",
+                    alias: "registrations",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "state_code",
+                    alias: "state_code",
+                    dataType: tableau.dataTypeEnum.string
+                },
+            ]
+
+            var pokemonUsRegTable = {
+                id: "pokemon_us_reg",
+                alias: "Pokemon US Reg",
+                columns: pokemon_us_reg_cols
+            }
+
+            var pokemon_yearly_event_cols = [
+                {
+                    id: "year",
+                    alias: "year",
+                    dataType: tableau.dataTypeEnum.int
+                },
+                {
+                    id: "generation",
+                    alias: "generation",
+                    dataType: tableau.dataTypeEnum.int
+                },
+                {
+                    id: "console",
+                    alias: "console",
+                    dataType: tableau.dataTypeEnum.string
+                },
+                {
+                    id: "events",
+                    alias: "events",
+                    dataType: tableau.dataTypeEnum.string
+                },
+            ]
+
+            var pokemonYearlyEventTable = {
+                id: "pokemon_yearly_event",
+                alias: "Pokemon Yearly Event",
+                columns: pokemon_yearly_event_cols
+            }
+
+            schemaCallback([gamesTable, pokemonGameRevTable, pokemonGameSaleUnitTable, pokemonGameRevTypeTable, pokemonSpendPerPlayerTable, pokemonUsRegTable, pokemonYearlyEventTable]);
         };
 
         // Download the data
         myConnector.getData = function (table, doneCallback) {
-            var apiCall = "http://localhost:3000/data";
+            var apiCall = "http://localhost:3000/data/" + table.tableInfo.id;
 
             $.getJSON(apiCall, function (resp) {
                 var feat = resp,
@@ -92,28 +222,37 @@
 
                 var i = 0;
 
-                if (table.tableInfo.id == "games") {
-                    for (i = 0, len = feat.length; i < len; i++) {
-                        tableData.push({
-                            "id": feat[i].game_id,
-                            "franchise": feat[i].franchise,
-                            "year_of_inception": feat[i].year_of_inception,
-                            "gross_lifetime_revenue": feat[i].gross_lifetime_revenue,
-                            "franchise_owner": feat[i].franchise_owner,
-                            "country": feat[i].country,
-                        });
-                    }
+                for (i = 0, len = feat.length; i < len; i++) {
+                    tableData.push(feat[i]);
                 }
 
-                if (table.tableInfo.id == "timeUrl") {
-                    for (i = 0, len = feat.length; i < len; i++) {
-                        tableData.push({
-                            "id": feat[i].id,
-                            "url": feat[i].properties.url,
-                            "time": new Date(feat[i].properties.time) // Convert to a date format from epoch time
-                        });
-                    }
-                }
+                // if (table.tableInfo.id == "games") {
+                //     for (i = 0, len = feat.length; i < len; i++) {
+                //         tableData.push({
+                //             "id": feat[i].game_id,
+                //             "franchise": feat[i].franchise,
+                //             "year_of_inception": feat[i].year_of_inception,
+                //             "gross_lifetime_revenue": feat[i].gross_lifetime_revenue,
+                //             "franchise_owner": feat[i].franchise_owner,
+                //             "country": feat[i].country,
+                //         });
+                //     }
+                // }
+
+                // if (table.tableInfo.id == "pokemon_game_rev") {
+                //     for (i = 0, len = feat.length; i < len; i++) {
+                //         tableData.push(feat[i]);
+                //     }
+                // }
+                // if (table.tableInfo.id == "pokemon_game_rev") {
+                //     for (i = 0, len = feat.length; i < len; i++) {
+                //         tableData.push({
+                //             "game": feat[i].game,
+                //             "console": feat[i].console,
+                //             "revenue": feat[i].revenue // Convert to a date format from epoch time
+                //         });
+                //     }
+                // }
 
                 table.appendRows(tableData);
                 doneCallback();

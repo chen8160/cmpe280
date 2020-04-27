@@ -21,8 +21,9 @@ app.get('/wdc', (req, res) => {
   });
 });
 
-app.get('/data', (req, res) => {
-  getData()
+app.get('/data/:id', (req, res) => {
+  const { id } = req.params;
+  getData(id)
     .then((data) => {
       res.json(data);
     })
