@@ -21,15 +21,11 @@ export default {
   .container{
     background-color:lawngreen;
     width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    height: 100vh;
+    position: relative;
   }
 
-  .chart {
+  /* .chart {
     width: 50%;
     height: 50%;
     background-color: lightseagreen;
@@ -38,7 +34,23 @@ export default {
     width: 30%;
     height: 50%;
     background-color: lightseagreen;
-  }
+  } */
+
+  .chart {
+  margin: auto;
+  width: 1400px;
+  height: 80%;
+  /* min-width: 700px; */
+    background-color: lightseagreen;
+}
+.content {
+  position: fixed;
+  right: 0;
+  bottom: -5%;
+  width: 30%;
+  height: 50%;
+  background-color: lightseagreen;
+}
   .content > * {
   width: 100%;
   }

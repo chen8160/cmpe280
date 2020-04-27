@@ -48,22 +48,24 @@ export default {
   /* min-width: 700px; */
 }
 .content {
-  position: fixed;
+  position: sticky;
   right: 0;
   bottom: -5%;
   width: 30%;
-  height: 50%;
+  height: 0;
   /* background-color: lightseagreen; */
 }
 .content > * {
   width: 100%;
 }
 .content > img {
-  transform: translate(-10%, -30%);
+  transform: translate(200%, -120%);
+    /* transform: translate(230%, 120%); */
+
 }
 
 .fade-in {
-  opacity: 1;
+  /* opacity: 0; */
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
@@ -73,11 +75,11 @@ export default {
 @keyframes fadeInOpacity {
   0% {
     opacity: 0;
-    transform: translate(30%, 0);
+    transform: translate(230%, 120%);
   }
   100% {
     opacity: 1;
-    transform: translateX(-10%, -30%);
+    transform: translate(200%, -120%);
   }
 }
 
