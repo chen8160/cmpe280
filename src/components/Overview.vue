@@ -3,11 +3,13 @@
     <div class="chart">
       <Tableau
         url="https://public.tableau.com/views/280_test/Dashboard1?:display_count=y&publish=yes&:origin=viz_share_link"
-        width="100%"
+        width="1382px"
+        height="2259px"
+        :options="options"
       ></Tableau>
     </div>
     <div class="content">
-      <img src="../assets/pikachu_anime.png" class="fade-in" v-if="this.loaded" />
+      <img src="../assets/pikachu_anime.png" class="fade-in"/>
     </div>
   </div>
 </template>
@@ -21,30 +23,34 @@ export default {
       type: Boolean,
       default: false,
     },
+    options: {
+      hideToolbar: true,
+      hideTabs: true
+    }
   },
 };
 </script>
 <style scoped>
 .container {
   /* background-color: hotpink; */
+  /* min-height: 90vh; */
   width: 100%;
-  height: 100%;
   position: relative;
   background: url("../assets/bg.jpg");
   background-size: cover;
   background-position: center;
+  padding: 5vh 0;
 }
 .chart {
   margin: auto;
-  padding-top: 2%;
   width: 1400px;
   height: 80%;
   /* min-width: 700px; */
 }
 .content {
-  position: absolute;
+  position: fixed;
   right: 0;
-  bottom: -10%;
+  bottom: -5%;
   width: 30%;
   height: 50%;
   /* background-color: lightseagreen; */
