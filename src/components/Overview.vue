@@ -64,8 +64,8 @@ export default {
 }
 .content > img {
   position: absolute;
-    bottom: 100px;
-    left: 200%;
+    bottom: 10px;
+    left: 230%;
 
   /* transform: translate(200%, -120%); */
     /* transform: translate(230%, 120%); */
@@ -87,8 +87,8 @@ export default {
   }
   100% {
     opacity: 1;
-    bottom: 100px;
-    left: 200%;
+    bottom: 10px;
+    left: 230%;
     transform: translate(0,0);
   }
 }
