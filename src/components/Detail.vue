@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="content" ref="con">
-      <img src="../assets/charizard_anime.png" @click="debug" ref="img"/>
+      <img src="../assets/charizard_anime.png" @click="debug" ref="img" class="fade-in"/>
     </div>
     <div class="chart">
       <Tableau
@@ -81,19 +81,19 @@ export default {
   /* opacity: 1; */
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: .6s;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
 }
 
 @keyframes fadeInOpacity {
   0% {
     opacity: 0;
-    transform: translate(100%, 100%);
+    transform: translate(-100%, -100%);
   }
   100% {
     opacity: 1;
-    bottom: 100px;
-    left: 200%;
+    /* bottom: 100px; */
+    /* left: 200%; */
     transform: translate(0,0);
   }
 }

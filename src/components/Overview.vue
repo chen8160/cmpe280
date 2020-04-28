@@ -76,8 +76,8 @@ export default {
   /* opacity: 0; */
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: 0.6s;
+  animation-timing-function: ease-in-out;
+  animation-duration: 1s;
 }
 
 @keyframes fadeInOpacity {
