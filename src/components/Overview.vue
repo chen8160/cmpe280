@@ -40,6 +40,7 @@ export default {
   background-size: cover;
   background-position: center;
   padding: 5vh 0;
+  min-height: 120vh;
 }
 .chart {
   margin: auto;
@@ -50,7 +51,7 @@ export default {
 .content {
   position: sticky;
   right: 0;
-  bottom: -5%;
+  bottom: 0%;
   width: 30%;
   height: 0;
   /* background-color: lightseagreen; */
@@ -59,7 +60,11 @@ export default {
   width: 100%;
 }
 .content > img {
-  transform: translate(200%, -120%);
+  position: absolute;
+    bottom: 100px;
+    left: 200%;
+
+  /* transform: translate(200%, -120%); */
     /* transform: translate(230%, 120%); */
 
 }
@@ -75,11 +80,13 @@ export default {
 @keyframes fadeInOpacity {
   0% {
     opacity: 0;
-    transform: translate(230%, 120%);
+    transform: translate(100%, 100%);
   }
   100% {
     opacity: 1;
-    transform: translate(200%, -120%);
+    bottom: 100px;
+    left: 200%;
+    transform: translate(0,0);
   }
 }
 

@@ -1,12 +1,14 @@
 <template>
   <div class="container">
-    <div class="content">
-      <img src="../assets/pikachu_anime.png" class="fade-in" v-if="this.loaded"/>
+    <div class="content" ref="con">
+      <img src="../assets/charizard_anime.png" @click="debug" ref="img" v-if="loaded"/>
     </div>
-    <div class="chart"></div>
+    <div class="chart">
+    </div>
   </div>
 </template>
 <script>
+
 export default {
   name: 'Detail',
   props: {
@@ -14,49 +16,65 @@ export default {
       type: Boolean,
       default: false,
     },
+    options: {
+      hideToolbar: true,
+      hideTabs: true
+    }
   },
+  mounted() {
+  },
+  methods:{
+    debug() {
+      debugger;
+    }
+  }
 };
 </script>
 <style scoped>
   .container{
-    background-color:lawngreen;
+    /* background-color:lawngreen; */
+      background: url("../assets/bg.jpg");
+  background-size: cover;
+  background-position: center;
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     position: relative;
+    display: flex;
+    flex-flow: column;
+    padding: 5vh 0;
   }
-
-  /* .chart {
-    width: 50%;
-    height: 50%;
-    background-color: lightseagreen;
-  }
-  .content {
-    width: 30%;
-    height: 50%;
-    background-color: lightseagreen;
-  } */
-
   .chart {
   margin: auto;
   width: 1400px;
-  height: 80%;
+  height: 200vh;
   /* min-width: 700px; */
     background-color: lightseagreen;
-}
-.content {
-  position: fixed;
-  right: 0;
-  bottom: -5%;
-  width: 30%;
-  height: 50%;
-  background-color: lightseagreen;
-}
-  .content > * {
-  width: 100%;
+  }
+  .content {
+    position: fixed;
+    top: 50%;
+    width: 30%;
+    height: 0px;
+    background-color: lightseagreen;
+    align-self:flex-start;
   }
 
+  .content > * {
+  width: 60%;
+  }
+
+  .content > img {
+  position: absolute;
+    top: 0;
+    left: 0%;
+
+  /* transform: translate(200%, -120%); */
+  /* transform: translate(230%, 120%); */
+
+}
+
   .fade-in {
-  opacity: 1;
+  /* opacity: 1; */
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
@@ -66,11 +84,13 @@ export default {
 @keyframes fadeInOpacity {
   0% {
     opacity: 0;
-    transform: translateY(-30%);
+    transform: translate(100%, 100%);
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    bottom: 100px;
+    left: 200%;
+    transform: translate(0,0);
   }
 }
 

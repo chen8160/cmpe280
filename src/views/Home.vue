@@ -3,9 +3,12 @@
     <section>
       <Overview :loaded="this.loaded.overview"></Overview>
     </section>
-    <section>
-      <Detail  :loaded="this.loaded.detail"></Detail>
-    </section>
+      <section ref="sec">
+        <Detail  :loaded="false" ></Detail>
+      </section>
+      <section>
+        <Detail  :loaded="true"></Detail>
+      </section>
   </div>
 </template>
 
@@ -27,6 +30,11 @@ export default {
         detail: false,
       },
     };
+  },
+  mounted() {
+    window.addEventListener('scroll', (e) =>{
+      // console.log(this.$refs)
+    })
   },
   methods: {
   },
