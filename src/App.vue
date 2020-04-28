@@ -7,9 +7,9 @@
       active-text-color="#ffd04b"
       :router="true"
     >
-      <el-menu-item @click="redirect('/industry')">Industry</el-menu-item>
-      <el-menu-item @click="redirect('/overview')">Overview</el-menu-item>
-      <el-menu-item @click="redirect('/detail')">Detail</el-menu-item>
+      <el-menu-item @click="redirect('/industry')">Game Industry</el-menu-item>
+      <el-menu-item @click="redirect('/overview')">Top Franchises</el-menu-item>
+      <el-menu-item @click="redirect('/detail')">Pokemon</el-menu-item>
     </el-menu>
     <router-view/>
   </div>
