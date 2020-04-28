@@ -1,8 +1,8 @@
 <template>
   <div class="container">
-    <div class="content" ref="con">
+    <!-- <div class="content" ref="con">
       <img src="../assets/charizard_anime.png" @click="debug" ref="img" class="fade-in"/>
-    </div>
+    </div> -->
     <div class="chart">
       <Tableau
         url="https://public.tableau.com/views/project_280_3/Dashboard1?:display_count=y&publish=yes&:origin=viz_share_link"
