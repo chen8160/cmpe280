@@ -52,7 +52,7 @@ export default {
   }
   .content {
     position: fixed;
-    top: 50%;
+    top: 60%;
     width: 30%;
     height: 0px;
     background-color: lightseagreen;

@@ -32,9 +32,6 @@ export default {
     };
   },
   mounted() {
-    window.addEventListener('scroll', (e) =>{
-      // console.log(this.$refs)
-    })
   },
   methods: {
   },
