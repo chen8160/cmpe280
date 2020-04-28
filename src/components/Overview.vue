@@ -28,6 +28,9 @@ export default {
       hideTabs: true
     }
   },
+  created() {
+    // debugger;
+  }
 };
 </script>
 <style scoped>

@@ -1,8 +1,29 @@
 <template>
   <div id="app">
+    <el-menu
+      mode="horizontal"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+      :router="true"
+    >
+      <el-menu-item @click="redirect('/industry')">Industry</el-menu-item>
+      <el-menu-item @click="redirect('/overview')">Overview</el-menu-item>
+      <el-menu-item @click="redirect('/detail')">Detail</el-menu-item>
+    </el-menu>
     <router-view/>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    redirect(url) {
+      window.location.replace(window.location.origin + url)
+    }
+  }
+}
+</script>
 
 <style>
 body {
@@ -27,5 +48,9 @@ body {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.el-menu.el-menu--horizontal{
+  border-bottom: none;
 }
 </style>

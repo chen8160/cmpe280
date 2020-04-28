@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <div class="content" ref="con">
-      <img src="../assets/charizard_anime.png" @click="debug" ref="img"/>
-    </div>
+    <!-- <div class="content" ref="con">
+      <img src="../assets/charizard_anime.png" @click="debug" ref="img" v-if="loaded"/>
+    </div> -->
     <div class="chart">
       <Tableau
-        url="https://public.tableau.com/views/project_280_3/Dashboard1?:display_count=y&publish=yes&:origin=viz_share_link"
-        width="1200px"
-        height="1027px"
+        url="https://public.tableau.com/views/280_project_2/Dashboard1?:display_count=y&publish=yes&:origin=viz_share_link"
+        width="1000px"
+        height="827px"
         :options="options"
       ></Tableau>
     </div>
@@ -51,6 +51,8 @@ export default {
   }
   .chart {
   margin: auto;
+  /* width: 1400px; */
+  /* height: ; */
   /* min-width: 700px; */
     background-color: lightseagreen;
   }
